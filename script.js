@@ -39,10 +39,11 @@ window.onload = () => {
         let item = ''
         for (let i = 0; i < data.length; i++) {
             item += `<div class="col">
-                        <div class="thumbnail">
-                        <img src='${data[i].img}' alt='${data[i].name}'/>
-                            <div class="caption">
-                            <h3>${data[i].name}<span class="label label-default">${data[i].price}</span>
+                        <div class="thumbnail card">
+                        <img src='${data[i].img}' alt='${data[i].name}' class="card-img-top"/>
+                            <div class="caption p-3">
+                            <h3 class="d-flex justify-content-between">${data[i].name} 
+                            <span class="label label-default">$${data[i].price}</span>
                                 </h3>
                                 <p><button data-item-id='${data[i].id}' class='btn btn-primary add-to-cart'>Add to Cart</button></p>
                             </div>

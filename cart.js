@@ -17,7 +17,7 @@ window.onload = () => {
             console.log(items[i])
             let itemTotal = items[i].item.price * items[i].amount
             console.log('total', itemTotal)
-            item = `<tr>
+            item += `<tr>
             <td>${items[i].item.id}</td>
             <td>${items[i].item.name}</td>
             <td>${items[i].item.price}</td>
@@ -29,5 +29,30 @@ window.onload = () => {
         }
         pEl.innerHTML = item
         document.getElementById('total').innerHTML = itemsTotal.toFixed(2)
+    }
+
+    function bindEvents() {
+        document.querySelectorAll('.remove-item-btn').forEach(function (el) {
+            el.addEventListener('click', function (event) {
+                let id = event.target.dataset.itemId
+                console.log(id)
+                removeItem(id)
+            })
+        })
+    }
+    function removeItem(id) {
+        for (var i = 0; i < cartItems.length; i++) {
+            console.log(typeof cartItems[i].item.id)
+            console.log(typeof id)
+            console.log(cartItems[i].item.id)
+            console.log(id)
+            console.log(cartItems[i].item.id === parseInt(id))
+            // if (cartItems[i].item.id === parseInt(id)) {
+            //     cartItems.splice(i, 1)
+            //     sessionStorage.setItem('cart', JSON.stringify({ item: cartItems }))
+            //     init()
+            //     break
+            // }
+        }
     }
 }
