@@ -38,7 +38,7 @@ window.onload = () => {
         itemsList.innerHTML = ''
         let item = ''
         for (let i = 0; i < data.length; i++) {
-            item += `<div class="col-sm-6 col-md-4">
+            item += `<div class="col">
                         <div class="thumbnail">
                         <img src='${data[i].img}' alt='${data[i].name}'/>
                             <div class="caption">
