@@ -19,7 +19,7 @@ window.onload = () => {
             console.log('total', itemTotal)
             item += `<tr>
             <td>${items[i].item.id}</td>
-            <td>${items[i].item.name}</td>
+            <td>${items[i].item.title}</td>
             <td>${items[i].item.price}</td>
             <td>${items[i].amount}</td>
             <td>${itemTotal}</td>
@@ -42,17 +42,13 @@ window.onload = () => {
     }
     function removeItem(id) {
         for (var i = 0; i < cartItems.length; i++) {
-            console.log(typeof cartItems[i].item.id)
-            console.log(typeof id)
-            console.log(cartItems[i].item.id)
-            console.log(id)
-            console.log(cartItems[i].item.id === parseInt(id))
-            // if (cartItems[i].item.id === parseInt(id)) {
-            //     cartItems.splice(i, 1)
-            //     sessionStorage.setItem('cart', JSON.stringify({ item: cartItems }))
-            //     init()
-            //     break
-            // }
+
+            if (cartItems[i].item.id === parseInt(id)) {
+                cartItems.splice(i, 1)
+                sessionStorage.setItem('cart', JSON.stringify({ item: cartItems }))
+                init()
+                break
+            }
         }
     }
 }

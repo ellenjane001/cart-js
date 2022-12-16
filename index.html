@@ -15,17 +15,23 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"
         defer></script>
     <script src="./script.js" defer></script>
+    <script src="https://kit.fontawesome.com/b140af86b3.js" crossorigin="anonymous" defer></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container p-2">
         <div class="row">
             <div class="col">
-                <a class="navbar-brand" href="products.html">Shopping time</a>
+                <a title="kodego-exercises-link" class="navbar-brand"
+                    href="https://ellenjane001.github.io/KodeGo-Exercise/"><i class="fa-solid fa-house fa-xl"></i></a>
             </div>
-            <div class="col">
-                <a href="cart.html"> Cart
-                    (<span class="badge-success" id="cart-items-num">0</span>)
+            <div class="col d-flex justify-content-end">
+                <a href="cart.html" type="button" class="btn btn-link position-relative">
+                    Cart
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        id="cart-items-num">
+                        99+
+                    </span>
                 </a>
             </div>
         </div>
