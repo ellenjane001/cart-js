@@ -3,16 +3,16 @@ window.onload = () => {
     let cartItems = []
 
     const fetchProducts = async () => {
-        let res = await fetch('https://dummyjson.com/products')
+        let res = await fetch('https://api.bluecartapi.com/request?api_key=BC0BB993219A4C3D9033BBA3D1337CFA&search_term=shoes&type=search')
         let json = await res.json()
         return await json
     }
 
     const showProducts = async () => {
         let results = await fetchProducts()
-
-        console.log(results['products'])
-        getItems(results['products'])
+        getItems(results['search_results'])
+        console.log(results['request_info'])
+        document.getElementById('requests').innerText = results.request_info.credits_remaining
     }
 
     showProducts()
@@ -32,19 +32,19 @@ window.onload = () => {
         bindEvents()
     }
     function createItems(data) {
-        console.log(data)
+        document.querySelector("div.page-loading-status").style = "display: none";
         let itemsList = document.querySelector('#items-list')
         itemsList.innerHTML = ''
         let item = ''
         for (let i = 0; i < data.length; i++) {
             item += `<div class="col m-2">
                         <div class="thumbnail card h-100 justify-content-between">
-                        <img src='${data[i].thumbnail}' alt='${data[i].title}' class="card-img-top img"/>
+                        <img src='${data[i].product.images[0]}' alt='${data[i].product.title}' class="card-img-top img"/>
                             <div class="caption p-3 d-flex flex-column justify-content-between">
-                            <h6 class="d-flex justify-content-between">${data[i].title.toUpperCase()} 
-                            <span class="label label-default text-muted">$${data[i].price.toFixed(2)}</span>
+                            <h6 class="d-flex justify-content-between">${data[i].product.title.toUpperCase()} 
+                            <span class="label label-default text-muted">${data[i].offers.primary.currency_symbol}${data[i].offers.primary.price.toFixed(2)}</span>
                                 </h6>
-                               <button data-item-id='${data[i].id}' class='btn btn-primary add-to-cart'>Add to Cart</button>
+                               <button data-item-id='${data[i].position}' class='btn btn-primary add-to-cart'>Add to Cart</button>
                             </div>
                         </div>
                     </div>`
@@ -69,7 +69,7 @@ window.onload = () => {
     }
     function addItem(id) {
         let itemObj = items.filter(item => {
-            return item.id === parseInt(id)
+            return item.position === parseInt(id)
         })[0]
         let itemInCart = cartItems.filter(item => {
             return item.id === id

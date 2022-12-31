@@ -15,12 +15,12 @@ window.onload = () => {
         let item = ''
         for (let i = 0; i < items.length; i++) {
             console.log(items[i])
-            let itemTotal = items[i].item.price * items[i].amount
+            let itemTotal = items[i].item.offers.primary.price * items[i].amount
             console.log('total', itemTotal)
             item += `<tr>
-            <td>${items[i].item.id}</td>
-            <td>${items[i].item.title}</td>
-            <td>${items[i].item.price}</td>
+            <td>${i + 1}</td>
+            <td>${items[i].item.product.title}</td>
+            <td>${items[i].item.offers.primary.price}</td>
             <td>${items[i].amount}</td>
             <td>${itemTotal}</td>
             <td><button data-item-id="${items[i].item.id}" class="btn btn-danger remove-item-btn">Remove</button></td>
@@ -42,10 +42,10 @@ window.onload = () => {
     }
     function removeItem(id) {
         for (var i = 0; i < cartItems.length; i++) {
-
             if (cartItems[i].item.id === parseInt(id)) {
                 cartItems.splice(i, 1)
-                sessionStorage.setItem('cart', JSON.stringify({ item: cartItems }))
+                console.log(cartItems)
+                sessionStorage.setItem('cart', JSON.stringify({ items: cartItems }))
                 init()
                 break
             }
